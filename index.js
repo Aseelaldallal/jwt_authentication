@@ -56,11 +56,11 @@ app.get("/", (req, res) => {
     res.json({ message: "Express is up!" });
 });
 
-
+// Login Route
 app.post('/login', (req, res) => {
     if (req.body.name && req.body.password) {
-        const name = req.body.name;
-        const password = req.body.password;
+        var name = req.body.name; // var not const - to avoid block scope
+        var password = req.body.password;
     }
     const user = users[_.findIndex(users, { name: name })]; // usually a db call
     if (!user) {
@@ -74,6 +74,11 @@ app.post('/login', (req, res) => {
     } else {
         res.status(401).json({ message: "passwords did not match" });
     }
+});
+
+// Accessing the passport-jwt protected api route
+app.get("/secret", passport.authenticate('jwt', { session: false }), (req, res) => {
+    res.json("Success! You can not see tihs without a token!");
 });
 
 app.listen(3000, () => {
