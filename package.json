@@ -1,0 +1,27 @@
+{
+  "name": "jwt_authentication",
+  "version": "1.0.0",
+  "description": "I create an authentication with JSON web tokens using passport-jwt. This API is to be used by React/Angular/Vue or a similar front end framework. I sent the jwt with every request, meaning that I don't rely on sessions, but simply put the token on every request I make to the API. This way, I don't have to worry about cookies. On the front end, you save the token in localStorage.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aseelaldallal/jwt_authentication.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aseelaldallal/jwt_authentication/issues"
+  },
+  "homepage": "https://github.com/Aseelaldallal/jwt_authentication#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.1",
+    "lodash": "^4.17.5",
+    "passport": "^0.4.0",
+    "passport-jwt": "^3.0.1"
+  }
+}
