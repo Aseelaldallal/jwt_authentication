@@ -33,7 +33,7 @@ let users = [
 // If authentication strategy fails, route will not be called and a 401 unauthorized response will be sent.
 let jwtOptions = {};
 // fromAuthHeaderAsBearerToken() creates a new extractor that looks for the JWT in the authorization header with the scheme 'bearer'
-jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken(); // 
+jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken(); // When making a request, pass bearer <token> in header
 jwtOptions.secretOrKey = 'bloooper';
 
 const strategy = new JwtStrategy(jwtOptions, (jwt_payload, next) => {
@@ -80,6 +80,14 @@ app.post('/login', (req, res) => {
 app.get("/secret", passport.authenticate('jwt', { session: false }), (req, res) => {
     res.json("Success! You can not see tihs without a token!");
 });
+
+// Just for debugging
+app.get("/secretDebug", (req, res, next) => {
+    console.log(req.get('Authorization'));
+    next()
+}, (req, res) => {
+    res.json('debugging');
+})
 
 app.listen(3000, () => {
     console.log("Express is running");
